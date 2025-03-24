@@ -31,8 +31,6 @@ jobs:
           TARGET_BRANCH: 'target'
           SOURCE_BRANCH: 'main'    
         run: |
-            git config --global user.name 'GitHub Action'
-            git config --global user.email 'action@github.com'
             git remote update
             git fetch 
             git checkout $TARGET_BRANCH            
