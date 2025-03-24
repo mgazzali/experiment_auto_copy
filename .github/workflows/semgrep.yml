@@ -35,20 +35,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Rename file 
-        run: mv oldfile.txt newfile.txt
-
-      - name: Delete file 
+      - name: Rename Config File
       - run: |
           ls
           echo ${{ github.ref }}
           ref='refs/tags/v'
           if [[ ${{ github.ref }} == 'refs/heads/intel-it' ]]; then
-            mv .semgrepconfigintelhrdev.txt .semgrepconfig
+            mv .semgrepconfigintelhrdev.yml .semgrepconfig.yml
             echo "version tag file refering to semgrepconfigintelhrdev"
           else
-            mv .semgrepconfigintelitdev.txt .semgrepconfig
+            mv .semgrepconfigintelitdev.yml .semgrepconfig.yml
             echo "version tag file refering to semgrepconfigintelitdev"
           fi
 
