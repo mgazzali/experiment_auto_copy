@@ -38,5 +38,6 @@ jobs:
             git checkout target            
             git checkout main -- * # copy files from the source branch
             git add *
-            git commit -m "Add all files related to Semgrep"            
+            git commit -m "Add all files related to Semgrep"
+            git push          
             
