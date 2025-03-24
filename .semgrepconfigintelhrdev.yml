@@ -1,0 +1,8 @@
+#env:
+#   id_iap: ${{ github.ref == 'refs/heads/intel-it' && 'iapm-23476-dev' || 'iapm-35521-dev' }}
+tags:
+#   - $id_iap
+#  - iapm-23476-prod 
+#  - iapm-23476-dev # To remove after initial scan results
+#  - iapm-35521-prod # HR - To remove after initial scan results
+  - iapm-35521-dev # HR - To remove after initial scan results HR
