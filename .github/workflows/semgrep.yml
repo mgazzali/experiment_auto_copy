@@ -38,8 +38,7 @@ jobs:
       - name: Rename Config File
       - run: |
           ls
-          echo ${{ github.ref }}
-          ref='refs/tags/v'
+          echo ${{ github.ref }}          
           if [[ ${{ github.ref }} == 'refs/heads/intel-it' ]]; then
             mv .semgrepconfigintelhrdev.yml .semgrepconfig.yml
             echo "version tag file refering to semgrepconfigintelhrdev"
