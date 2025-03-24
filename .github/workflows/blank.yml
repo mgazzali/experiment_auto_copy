@@ -31,11 +31,13 @@ jobs:
           TARGET_BRANCH: 'target'
           SOURCE_BRANCH: 'main'    
         run: |
-            git remote update
-            git fetch 
-            git checkout $TARGET_BRANCH            
-            git checkout $SOURCE_BRANCH -- * # copy files from the source branch
-            git add -A
-            git commit -m "Add all files related to Semgrep"
-            git push origin $TARGET_BRANCH # push to remote branch        
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git remote update
+          git fetch 
+          git checkout $TARGET_BRANCH            
+          git checkout $SOURCE_BRANCH -- * # copy files from the source branch
+          git add -A
+          git commit -m "Add all files related to Semgrep"
+          git push origin $TARGET_BRANCH # push to remote branch        
             
