@@ -35,9 +35,9 @@ jobs:
             git config --global user.email 'action@github.com'
             git remote update
             git fetch 
-            git checkout target            
-            git checkout main -- * # copy files from the source branch
-            git add *
+            git checkout $TARGET_BRANCH            
+            git checkout SOURCE_BRANCH -- * # copy files from the source branch
+            git add -A
             git commit -m "Add all files related to Semgrep"
-            git push          
+            git push origin $TARGET_BRANCH # push to remote branch        
             
