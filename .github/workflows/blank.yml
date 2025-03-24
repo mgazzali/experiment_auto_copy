@@ -36,7 +36,7 @@ jobs:
             git remote update
             git fetch 
             git checkout --track origin/target            
-            git checkout --track origin/main -- * # copy files from the source branch
+            git checkout main -- * # copy files from the source branch
             git add *
             git commit -m "Add all files related to Semgrep"
             
