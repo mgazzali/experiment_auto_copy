@@ -31,10 +31,10 @@ jobs:
           TARGET_BRANCH: 'target'
           SOURCE_BRANCH: 'main'    
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git checkout target       # checkout to your branch
-          git checkout main -- * # copy files from the source branch
-          git add *
-          git commit -m "Add all files related to Semgrep"
-          git checkout main
+            git config --global user.name 'GitHub Action'
+            git config --global user.email 'action@github.com'
+            git checkout target       # checkout to your branch
+            git checkout main -- * # copy files from the source branch
+            git add *
+            git commit -m "Add all files related to Semgrep"
+            git checkout main
