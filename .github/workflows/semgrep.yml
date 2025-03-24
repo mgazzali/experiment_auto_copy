@@ -14,28 +14,53 @@ on:
 
   # Scan on-demand through GitHub Actions interface:
   workflow_dispatch: {}
+  
 
   # Scan mainline branches and report all findings:
   # Ensure you have the correct branch/es for your project
   # Recommend only setting the default branch on push, or branches you push to frequently
   push:
-    branches: ["intel-hr"]
+    branches: ["intel-hr", "intel-it"]
 
+env:
+  id_iap: ${{ github.ref == 'refs/heads/intel-it' && '23476' || '35521' }} 
+  
   # Schedule the CI job (this method uses cron syntax):
   #schedule:
     #- cron: '0 0 1 * *' # Sets Semgrep to scan on the 1st of every month at 12:00 AM UTC.
     # It is recommended to change the schedule to a random time.
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rename file 
+        run: mv oldfile.txt newfile.txt
+
+      - name: Delete file 
+      - run: |
+          ls
+          echo ${{ github.ref }}
+          ref='refs/tags/v'
+          if [[ ${{ github.ref }} == 'refs/heads/intel-it' ]]; then
+            mv .semgrepconfigintelhrdev.txt .semgrepconfig
+            echo "version tag file refering to semgrepconfigintelhrdev"
+          else
+            mv .semgrepconfigintelitdev.txt .semgrepconfig
+            echo "version tag file refering to semgrepconfigintelitdev"
+          fi
+
   Call-Workflow:
-    uses: intel-innersource/frameworks.actions.semgrep-static-code-scan/.github/workflows/semgrep.yml@1.4.0
+    uses: intel-innersource/frameworks.actions.semgrep-static-code-scan/.github/workflows/semgrep.yml@1.4.0    
     with:
     # Please insert the runner group for your project
     # Example: runner-group: 'innersource.prod.amr.dind'
       runner-group: 'innersource.prod.amr.dind'
     # Please insert the IAPM ID of the application here
     # If the ID not entered the auto-tagging feature will not work
-      iapm-id: '35521'
+      iapm-id: $id_iap
     # Please indicate if this should be calculated for ASPN scoring entering true
     # If set to true, the default branch will be tagged as prod and all other branches will be tagged as dev
       prod-scan: ''
